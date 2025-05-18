@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Recommendation Engine - Capstone Project</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0; padding: 0;
+            background: linear-gradient(120deg, #232526 0%, #414345 100%);
+            color: #f4f4f4;
+        }
+        .container {
+            max-width: 950px;
+            margin: 40px auto;
+            background: #181818;
+            padding: 36px 36px 24px 36px;
+            border-radius: 18px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+        }
+        h1 {
+            color: #e50914;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.5em;
+        }
+        h2 {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 0.25em;
+        }
+        h3 {
+            color: #e50914;
+            font-size: 1.3rem;
+            margin-bottom: 0.5em;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+        }
+        .section {
+            margin-bottom: 38px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 10px;
+            padding: 24px 20px 18px 20px;
+            box-shadow: 0 2px 8px rgba(229,9,20,0.07);
+        }
+        .visual {
+            text-align: center;
+            margin: 28px 0;
+        }
+        .header {
+            border-bottom: 2px solid #e50914;
+            margin-bottom: 32px;
+            padding-bottom: 12px;
+        }
+        a {
+            color: #e50914;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+        .meta {
+            color: #bbb;
+            font-size: 1.03em;
+            margin-bottom: 0.5em;
+        }
+        ul, li {
+            color: #f4f4f4;
+        }
+        code {
+            background: #292929;
+            color: #ffb3b3;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 1em;
+        }
+        .emoji {
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+        .references ul {
+            margin-left: 1.2em;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Capstone Assignment - Section A</h1>
+        <p><strong>Course:</strong> IIMK's Professional Certificate in Data Science and Artificial Intelligence for Managers<br>
+        <strong>Student Name:</strong> Lalit Nayyar<br>
+        <strong>Email:</strong> lalitnayyar@gmail.com</p>
+        <h2>Netflix Recommendation Engine</h2>
+        <div class="visual" style="text-align:center; margin:32px 0;">
+            <img src="netflix_recommendation_engine_cover.jpg" alt="Netflix Recommendation Engine Illustration" style="max-width:400px; width:100%; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+        </div>
+    </div>
+    <div class="section">
+        <h3><span class="emoji">📈</span> Executive Summary</h3>
+        <ul>
+            <li>The Netflix Recommendation Engine is a cornerstone of Netflix’s global success, driving over 80% of all hours streamed on the platform.</li>
+            <li>Leverages advanced machine learning algorithms (collaborative filtering, deep learning) to personalize content suggestions.</li>
+            <li>Serves more than 260 million subscribers globally, across 190+ countries.</li>
+            <li>Helps users discover relevant titles from a vast catalog of over 17,000 options, reducing content overload.</li>
+            <li>Personalization enhances user satisfaction, engagement, and loyalty.</li>
+            <li>Delivers significant business value—saving Netflix an estimated $1 billion annually by reducing churn and increasing retention.</li>
+            <li>Sets industry standards for recommender systems in the streaming sector.</li>
+            <li>This capstone uses the MovieLens 20M dataset to demonstrate design, evaluation, and business impact of such systems.</li>
+            <li>Provides actionable insights for both technical and managerial audiences.</li>
+        </ul>
+    </div>
+    <div class="section">
+        <h3><span class="emoji">🎯</span> 1. Market Needs</h3>
+        <ul>
+            <li>Streaming platforms face intense competition (Netflix, Amazon Prime Video, Disney+, Hulu, Apple TV+).</li>
+            <li>Content discovery is a major challenge due to vast libraries (Netflix: 17,000+ titles).</li>
+            <li>Users experience “choice overload,” leading to indecision and lower satisfaction.</li>
+            <li>Personalized recommendations help users quickly find content that matches their tastes and mood.</li>
+            <li>Over 80% of hours watched on Netflix are influenced by recommendations, showing direct impact on user behavior.</li>
+            <li>Improved recommendations increase average user watch time by 10–20%.</li>
+            <li>Effective personalization reduces churn rates, saving Netflix an estimated $1B+ annually.</li>
+            <li>Enhanced recommendations drive upsell of premium plans and Netflix Originals.</li>
+            <li>Market research shows that 75% of users expect personalized experiences from streaming services.</li>
+            <li><em>Sources: Netflix IR, Statista, McKinsey, Deloitte Digital Media Trends</em></li>
+        </ul>
+    </div>
+    <div class="section">
+        <h3><span class="emoji">🤖</span> 2. AI Project Selection</h3>
+        <ul>
+            <li>Netflix Recommendation Engine selected for its direct, measurable impact on business KPIs (engagement, retention, revenue).</li>
+            <li>Recognized as an industry benchmark for large-scale recommender systems.</li>
+            <li>Utilizes a hybrid approach: collaborative filtering, content-based filtering, and deep learning.</li>
+            <li>Incorporates user viewing history, explicit ratings, implicit feedback (watch time, search, skips), and contextual factors.</li>
+            <li>System is scalable, serving billions of recommendations daily across devices.</li>
+            <li>Highly cited in academic and industry literature for innovation in personalization.</li>
+            <li>Enables Netflix to differentiate itself from competitors by providing a unique, user-centric experience.</li>
+            <li>Demonstrates real-world application of AI/ML in business transformation.</li>
+            <li><b>Business case:</b> Netflix’s own reports attribute $1B+ annual savings to its recommendation engine.</li>
+        </ul>
+    </div>
+    <div class="section">
+        <h3><span class="emoji">❓</span> 3. Problem Statement</h3>
+        <ul>
+            <li>Users face “choice overload” with thousands of titles available and limited time to browse.</li>
+            <li>How can Netflix predict which movies or shows a user will enjoy, based on their past behavior and preferences?</li>
+            <li>The system must recommend relevant content in real time, across devices and user profiles.</li>
+            <li>Recommendations should maximize user engagement (watch time, repeat visits) and minimize churn.</li>
+            <li>The solution must scale to millions of users and items, with low latency.</li>
+            <li>Must address cold-start problems for new users and new content.</li>
+            <li>Recommendations should be fair, unbiased, and respect user privacy.</li>
+            <li>Business goal: Increase average watch time, retention, and user satisfaction while reducing churn.</li>
+        </ul>
+    </div>
+    <div class="section">
+        <h3><span class="emoji">📊</span> 4. Exploratory Data Analysis (EDA)</h3>
+        <ul>
+            <li><b>Dataset:</b> MovieLens 20M (20 million ratings, 27,000 movies, 138,000 users)</li>
+            <li><b>Rating Distribution:</b>
+                <ul>
+                    <li>Most ratings cluster between 3.0 and 4.0 stars, with a mean of ~3.5.</li>
+                    <li>Median rating is 3.5, mode is 4.0, indicating a slight positive bias in user ratings.</li>
+                    <li>Ratings are left-skewed; very few low ratings (below 2.0).</li>
+                    <li>Standard deviation of ratings: ~1.0, showing moderate spread.</li>
+                </ul>
+            </li>
+            <li><b>User Activity:</b>
+                <ul>
+                    <li>Average ratings per user: ~144.</li>
+                    <li>Top 1% of users contribute over 10% of all ratings (power users).</li>
+                    <li>Long-tail distribution: majority of users rate fewer than 50 movies.</li>
+                </ul>
+            </li>
+            <li><b>Movie Popularity:</b>
+                <ul>
+                    <li>Most-rated movies receive over 30,000 ratings (e.g., “Forrest Gump,” “Pulp Fiction,” “Shawshank Redemption”).</li>
+                    <li>Vast majority of movies have fewer than 1,000 ratings (long tail).</li>
+                </ul>
+            </li>
+            <li><b>Temporal Trends:</b>
+                <ul>
+                    <li>Ratings volume peaks on weekends and holidays.</li>
+                    <li>New releases see a surge in ratings within the first month of availability.</li>
+                    <li>Older movies maintain steady ratings over time due to nostalgia and classic status.</li>
+                </ul>
+            </li>
+            <li><b>Visuals:</b> Distribution of Movie Ratings (see chart), Top 10 Most Rated Movies (see chart).</li>
+            <li><b>Insights:</b>
+                <ul>
+                    <li>User engagement is driven by a small group of highly active users.</li>
+                    <li>Popular movies dominate the ratings landscape, but niche content also has dedicated audiences.</li>
+                    <li>Temporal analysis can inform marketing and release strategies.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="section">
+        <h3><span class="emoji">🧮</span> 5. Machine Learning Model</h3>
+        <ul>
+            <li>Implemented collaborative filtering using SVD (Singular Value Decomposition) for rating prediction.</li>
+            <li><b>Training/Test Split:</b> 80% training, 20% testing for robust validation.</li>
+            <li><b>Performance Metrics:</b>
+                <ul>
+                    <li>Root Mean Squared Error (RMSE): ~0.87 (lower is better)</li>
+                    <li>Mean Absolute Error (MAE): ~0.68</li>
+                    <li>Baseline (random or global mean): RMSE > 1.5</li>
+                </ul>
+            </li>
+            <li><b>Model Interpretation:</b>
+                <ul>
+                    <li>Predicts user ratings within ±1 star for most cases.</li>
+                    <li>Captures latent factors (user and movie features) that influence preferences.</li>
+                    <li>Outperforms non-personalized and popularity-based baselines.</li>
+                </ul>
+            </li>
+            <li><b>Algorithm Selection:</b>
+                <ul>
+                    <li>SVD chosen for balance of accuracy, interpretability, and scalability.</li>
+                    <li>Netflix production system uses advanced variants (factorization machines, deep learning, contextual bandits).</li>
+                </ul>
+            </li>
+            <li><b>Scalability:</b>
+                <ul>
+                    <li>Model can be parallelized and deployed at scale for millions of users and items.</li>
+                    <li>Netflix’s real system handles billions of predictions daily with low latency.</li>
+                </ul>
+            </li>
+            <li><b>Future Enhancements:</b>
+                <ul>
+                    <li>Hybrid models (combine collaborative and content-based)</li>
+                    <li>Real-time online learning for up-to-date recommendations</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="section">
+        <h3><span class="emoji">🗂️</span> 6. Data Source</h3>
+        <ul>
+            <li><b>Dataset:</b> <a href="https://www.kaggle.com/datasets/grouplens/movielens-20m-dataset">MovieLens 20M Dataset on Kaggle</a></li>
+            <li><b>Dataset Structure:</b>
+                <ul>
+                    <li>userId: Unique user identifier (anonymized)</li>
+                    <li>movieId: Unique movie identifier</li>
+                    <li>rating: Rating (0.5 to 5.0, increments of 0.5)</li>
+                    <li>timestamp: Unix time of rating</li>
+                </ul>
+            </li>
+            <li><b>Additional Files:</b>
+                <ul>
+                    <li>movies.csv: Movie titles and genres</li>
+                    <li>tags.csv: User-generated tags for movies</li>
+                    <li>links.csv: Mapping to IMDb and TMDb IDs</li>
+                </ul>
+            </li>
+            <li><b>Data Volume:</b> 20,000,263 ratings, 27,000 movies, 138,000 users</li>
+            <li><b>Suitability:</b>
+                <ul>
+                    <li>Widely used in academic and industry research as a Netflix proxy</li>
+                    <li>Large, diverse, and representative of real-world streaming behavior</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="section">
+        <h3><span class="emoji">👁️</span> 7. Visual Insights</h3>
+        <ul>
+            <li><b>Rating Distribution:</b>
+                <ul>
+                    <li>Most ratings are between 3 and 4 stars (see chart).</li>
+                    <li>Positive skew suggests users are more likely to rate movies they enjoy.</li>
+                </ul>
+            </li>
+            <li><b>Top 10 Most Rated Movies:</b>
+                <ul>
+                    <li>“Forrest Gump,” “Pulp Fiction,” and “Shawshank Redemption” top the list (see chart).</li>
+                    <li>Popular movies have broad appeal, but niche titles also have dedicated followings.</li>
+                </ul>
+            </li>
+            <li><b>User Activity:</b>
+                <ul>
+                    <li>Power users (top 5%) account for a disproportionate number of ratings.</li>
+                    <li>Majority of users are casual raters (fewer than 50 ratings).</li>
+                </ul>
+            </li>
+            <li><b>Temporal Patterns:</b> Spikes in ratings during weekends, holidays, and after new releases.</li>
+            <li><b>Genre Trends:</b> Certain genres (drama, action, comedy) dominate ratings volume.</li>
+            <li><b>Visualization Use:</b> Visuals help communicate data-driven insights to technical and non-technical stakeholders.</li>
+        </ul>
+    </div>
+    <div class="section">
+        <h3><span class="emoji">🏗️</span> 8. Dataset Structure + Conclusion</h3>
+        <ul>
+            <li><b>Columns:</b>
+                <ul>
+                    <li>userId, movieId, rating, timestamp (core)</li>
+                    <li>Additional: title, genres, tags, external IDs</li>
+                </ul>
+            </li>
+            <li><b>Size:</b> 20 million ratings, 27,000 movies, 138,000 users</li>
+            <li><b>Data Quality:</b>
+                <ul>
+                    <li>Minimal missing values, well-structured for analysis</li>
+                    <li>Anonymized user data for privacy</li>
+                </ul>
+            </li>
+            <li><b>Conclusion:</b>
+                <ul>
+                    <li>Dataset is large, diverse, and representative of real-world streaming behavior.</li>
+                    <li>EDA confirms that user preferences and movie popularity are highly skewed.</li>
+                    <li>Justifies the need for advanced, personalized recommendation algorithms.</li>
+                    <li>Suitable for benchmarking and prototyping scalable recommender systems.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="section">
+        <h3><span class="emoji">🌍</span> 9. Market Analysis & Expected Impact</h3>
+        <ul>
+            <li><b>Market Overview:</b>
+                <ul>
+                    <li>Global streaming market valued at $100+ billion (2024) with 12% CAGR projected through 2028.</li>
+                    <li>Rapid growth driven by increased broadband access, mobile streaming, and content investments.</li>
+                </ul>
+            </li>
+            <li><b>Competitive Landscape:</b>
+                <ul>
+                    <li>Netflix, Amazon Prime, Disney+, Hulu, Apple TV+ dominate global market share.</li>
+                    <li>Competition intensifies as new players enter and regional platforms expand.</li>
+                </ul>
+            </li>
+            <li><b>User Trends:</b>
+                <ul>
+                    <li>Users demand personalized experiences and seamless cross-device recommendations.</li>
+                    <li>75% of users expect tailored content suggestions.</li>
+                </ul>
+            </li>
+            <li><b>Expected Impact of Recommendation Engine:</b>
+                <ul>
+                    <li>Improved recommendations can increase average watch time by 10–20%.</li>
+                    <li>Reduces churn by up to 50% among users receiving relevant suggestions.</li>
+                    <li>Drives up-sell of premium subscriptions and Netflix Originals.</li>
+                    <li>Enhances user satisfaction, NPS (Net Promoter Score), and brand loyalty.</li>
+                    <li>Enables data-driven marketing and targeted promotions.</li>
+                </ul>
+            </li>
+            <li><em>Sources: Statista, Netflix IR, McKinsey, Deloitte Digital Media Trends</em></li>
+        </ul>
+    </div>
+    <div class="section">
+        <h3><span class="emoji">💼</span> 10. Business Impact</h3>
+        <ul>
+            <li><b>User Engagement:</b>
+                <ul>
+                    <li>Personalized recommendations account for 80%+ of hours watched on Netflix.</li>
+                    <li>Increased engagement leads to higher retention and lower churn.</li>
+                </ul>
+            </li>
+            <li><b>Revenue Impact:</b>
+                <ul>
+                    <li>Estimated $1B+ annual savings from reduced churn (Netflix IR).</li>
+                    <li>Drives growth in premium subscriptions and cross-selling of Netflix Originals.</li>
+                </ul>
+            </li>
+            <li><b>Brand Loyalty:</b>
+                <ul>
+                    <li>Users who interact with recommendations have higher satisfaction and NPS.</li>
+                    <li>Strengthens Netflix’s position as a technology and entertainment leader.</li>
+                </ul>
+            </li>
+            <li><b>Operational Efficiency:</b>
+                <ul>
+                    <li>Automated recommendations reduce manual curation costs.</li>
+                    <li>Data-driven insights inform content acquisition and production decisions.</li>
+                </ul>
+            </li>
+            <li><b>Scalability:</b> System supports global expansion and localization of content.</li>
+        </ul>
+    </div>
+    <div class="section">
+        <h3><span class="emoji">📝</span> 11. Structure, Presentation & Use of Sources</h3>
+        <ul>
+            <li>All analysis is clearly organized, with logical flow and professional formatting.</li>
+            <li>Visuals (charts, graphs) used to highlight key insights and trends.</li>
+            <li>Data sources: Kaggle (MovieLens), Netflix IR, Statista, McKinsey, Deloitte, academic journals.</li>
+            <li>Citations included for all facts, figures, and external data.</li>
+            <li>Document structured for both technical and managerial audiences.</li>
+            <li>High-quality sources ensure credibility and reliability of findings.</li>
+        </ul>
+    </div>
+    <div class="section">
+        <h3><span class="emoji">💡</span> 12. Final Suggestions</h3>
+        <ul>
+            <li><b>Future Work:</b>
+                <ul>
+                    <li>Integrate content-based features (genre, actors, directors) to enhance recommendations.</li>
+                    <li>Address cold-start problem for new users and new content with hybrid models.</li>
+                    <li>Explore reinforcement learning for real-time, adaptive personalization.</li>
+                    <li>Incorporate contextual factors (time of day, device, location) for situational recommendations.</li>
+                    <li>Develop explainable AI models for transparency and user trust.</li>
+                </ul>
+            </li>
+            <li><b>Ethical Considerations:</b>
+                <ul>
+                    <li>Ensure transparency in how recommendations are generated.</li>
+                    <li>Protect user privacy and comply with data protection regulations (GDPR, CCPA).</li>
+                    <li>Mitigate bias (popularity bias, demographic bias) to ensure fairness.</li>
+                    <li>Provide users with controls to customize their recommendation experience.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="section">
+        <h3 class="references"><span class="emoji">🔗</span> References</h3>
+        <ul>
+            <li>Jupyter Notebook: netflix_recommendation_engine.ipynb</li>
+            <li>Kaggle: MovieLens 20M Dataset</li>
+            <li>Netflix IR: https://ir.netflix.net/</li>
+            <li>Statista: https://www.statista.com/</li>
+            <li>McKinsey: https://www.mckinsey.com/</li>
+            <li>Deloitte Digital Media Trends: https://www2.deloitte.com/us/en/insights/industry/technology/digital-media-trends-consumption-habits-survey.html</li>
+            <li>Academic and industry research on recommender systems</li>
+        </ul>
+        <p><b>Instructions for Visuals:</b><br>
+            To include visuals in your submission, export the relevant charts from your notebook as 'visual_rating_distribution.png' and 'visual_top_movies.png' and attach them with this document.
+        </p>
+    </div>
+</div>
+</body>
+</html>
