@@ -101,33 +101,7 @@ https://lalitnayyar.github.io/iimkassignment6/
 For further questions, contact Lalit Nayyar at lalitnayyar@gmail.com.
 
 
-### 1. `amazon_supply_chain_data_analysis.ipynb`
-
-**Purpose:**
-- Analyze Amazon supply chain data, automate Kaggle dataset download, perform EDA, and generate business-ready visuals for your HTML report.
-
-**Step-by-Step Instructions:**
-1. **Install Requirements:**
-   - Ensure Python 3.8+ is installed.
-   - Install required packages: `pip install pandas matplotlib seaborn plotly kaggle`
-2. **Kaggle API Setup:**
-   - Create a Kaggle account at [kaggle.com](https://www.kaggle.com/).
-   - Get your Kaggle API key (`kaggle.json`) from your Kaggle account settings.
-   - Place `kaggle.json` in your working directory or configure it as per [Kaggle API docs](https://github.com/Kaggle/kaggle-api#api-credentials).
-3. **Download Dataset:**
-   - The notebook will run `!kaggle datasets download -d stuti24/amazon-supply-chain-dataset` and unzip the data to a `data/` folder.
-4. **Run the Notebook:**
-   - Open the notebook in Jupyter or VS Code.
-   - Execute all cells sequentially (Cell > Run All).
-   - Inspect and modify code blocks as needed for custom analysis.
-5. **Key Outputs & Visuals:**
-   - Order Volume Trends (line plot)
-   - Fulfillment Center Distribution (map)
-   - Delivery Speed Distribution (histogram)
-   - Inventory Turnover by Product Category (bar plot)
-   - All visuals can be saved as PNGs and embedded in your HTML report.
-
-### 2. `netflix_recommendation_engine.ipynb`
+### 1. `netflix_recommendation_engine.ipynb`
 
 **Purpose:**
 - Explore and analyze the MovieLens dataset to demonstrate recommendation engine concepts for Netflix.
